@@ -1,0 +1,128 @@
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:#0d1117;
+    font-family:'Segoe UI', sans-serif;
+    overflow:hidden;
+    position:relative;
+}
+
+/* soft glowing shapes drifting in the background */
+.glow{
+    position:absolute;
+    border-radius:50%;
+    filter:blur(100px);
+    opacity:0.5;
+    animation:drift 10s ease-in-out infinite;
+}
+
+.glow1{
+    width:280px;
+    height:280px;
+    background:#3ec6ff;
+    top:10%;
+    left:5%;
+}
+
+.glow2{
+    width:320px;
+    height:320px;
+    background:#ff3ec6;
+    bottom:5%;
+    right:5%;
+    animation-delay:3s;
+}
+
+@keyframes drift{
+    0%, 100%{ transform: translateY(0); }
+    50%{ transform: translateY(-30px); }
+}
+
+.wrap{
+    position:relative;
+    z-index:1;
+    text-align:center;
+    color:white;
+}
+
+h1{
+    font-size:36px;
+    margin:0 0 8px;
+}
+
+.sub{
+    color:#8b93a3;
+    margin:0 0 40px;
+}
+
+.grid{
+    display:flex;
+    gap:24px;
+    flex-wrap:wrap;
+    justify-content:center;
+}
+
+.card{
+    width:140px;
+    height:140px;
+    perspective:800px;
+    position:relative;
+}
+
+.front, .back{
+    position:absolute;
+    width:140px;
+    height:140px;
+    border-radius:16px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    backface-visibility:hidden;
+    transition:transform 0.6s ease;
+    font-size:20px;
+}
+
+.front{
+    background:#161b22;
+    border:1px solid #2a3140;
+}
+
+.front span{
+    font-size:40px;
+}
+
+.back{
+    color:#0d1117;
+    font-weight:bold;
+}
+
+/* card A flips left-to-right */
+.card-a .back{
+    background:#3ec6ff;
+    transform: rotateY(180deg);
+}
+.card-a:hover .front{ transform: rotateY(180deg); }
+.card-a:hover .back{ transform: rotateY(360deg); }
+
+/* card B flips top-to-bottom */
+.card-b .back{
+    background:#c6ff3e;
+    transform: rotateX(180deg);
+}
+.card-b:hover .front{ transform: rotateX(180deg); }
+.card-b:hover .back{ transform: rotateX(360deg); }
+
+/* card C flips diagonally */
+.card-c .back{
+    background:#ff3ec6;
+    transform: rotate3d(1,1,0,180deg);
+}
+.card-c:hover .front{ transform: rotate3d(1,1,0,180deg); }
+.card-c:hover .back{ transform: rotate3d(1,1,0,360deg); }
